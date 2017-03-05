@@ -1,34 +1,70 @@
 {
-  "posts": [],
-  "user": {},
   "todos": [
     {
-      "id": 1488508649896,
-      "data": "{\"todo\":\"wake up\",\"when\":1488541049889}"
-    },
-    {
-      "id": 1488508672626,
-      "data": "{\"todo\":\"wake up\",\"when\":1488541072608}"
-    },
-    {
-      "id": 1488508702872,
+      "id": 1488734546551,
       "data": {
         "todo": "wake up",
-        "when": 1488541102848
+        "when": 1488766946489,
+        "isDone": true
+      },
+      "isDone": true
+    },
+    {
+      "id": 1488734812194,
+      "data": {
+        "todo": "drank",
+        "when": 1488767212139,
+        "isDone": true
       }
     },
     {
-      "id": 1488508714098,
+      "id": 1488734812196,
       "data": {
-        "todo": "wake up",
-        "when": 1488541114095
+        "todo": "brush teeth",
+        "when": 1488767212140,
+        "isDone": false
       }
     },
     {
-      "id": 1488508748173,
+      "id": 1488734812198,
       "data": {
-        "todo": "wake up",
-        "when": 1488541148112
+        "todo": "get dressed",
+        "when": 1488767212141
+      }
+    },
+    {
+      "id": 1488738576770,
+      "data": {
+        "todo": "call randy",
+        "when": 1488770976766
+      }
+    },
+    {
+      "id": 1488738773482,
+      "data": {
+        "todo": "call baba",
+        "when": 1488771173477
+      }
+    },
+    {
+      "id": 1488738781544,
+      "data": {
+        "todo": "call momz",
+        "when": 1488771181541
+      }
+    },
+    {
+      "id": 1488738815366,
+      "data": {
+        "todo": "chill",
+        "when": 1488771215362
+      }
+    },
+    {
+      "id": 1488738822503,
+      "data": {
+        "todo": "just type correctly, bro",
+        "when": 1488771222501
       }
     }
   ]

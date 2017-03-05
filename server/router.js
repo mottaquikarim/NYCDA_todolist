@@ -1,5 +1,5 @@
 const low = require('lowdb');
-const db = low('db.json');
+const db = low('./db.json');
 
 db.defaults({ todos: [] }).write()
 
@@ -8,8 +8,7 @@ const {fileRead} = require('./fs-promise');
 	const fsPromise = require('./fs-promise');
 	const fileRead = fsPromise.fileRead;
 
-
-*/ 
+*/
 
 const onRequest = (request, response) => {
 	// console.log(request.url, request.method);
@@ -49,6 +48,38 @@ const onRequest = (request, response) => {
 				});
 
 			console.log('look ma! im in a post')
+		}
+		const lastBit = path.split('/').pop();
+		const isLastBitNum = !isNaN(lastBit);
+
+		if (path.indexOf('/todo') === 0 && isLastBitNum && method.toUpperCase() === 'PUT') {
+			const body = [];
+			request
+				.on('data', (chunk) => {
+					console.log(chunk)
+					body.push(chunk);
+				})
+				.on('end', () => {
+					const requestBody = Buffer.concat(body).toString();
+					const dataPayload = JSON.parse(requestBody);
+					const id = parseInt(lastBit, 10);
+
+					db.get('todos')
+					  .find({ id })
+					  .set('data.isDone', dataPayload.isDone)
+					  // .assign({ isDone: dataPayload.isDone })
+					  .write()
+
+					// // Add a post
+					// db.get('todos').push({
+					// 	id: Date.now(), 
+					// 	data: JSON.parse(requestBody)
+					// }).write();
+
+					response.setHeader('Content-Type', 'application/json');
+					response.end(JSON.stringify(db.get('todos').value()));
+
+				});
 		}
 	}
 	else {
