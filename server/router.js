@@ -51,6 +51,7 @@ const onRequest = (request, response) => {
 		}
 		const lastBit = path.split('/').pop();
 		const isLastBitNum = !isNaN(lastBit);
+		const id = parseInt(lastBit, 10);
 
 		if (path.indexOf('/todo') === 0 && isLastBitNum && method.toUpperCase() === 'PUT') {
 			const body = [];
@@ -62,7 +63,7 @@ const onRequest = (request, response) => {
 				.on('end', () => {
 					const requestBody = Buffer.concat(body).toString();
 					const dataPayload = JSON.parse(requestBody);
-					const id = parseInt(lastBit, 10);
+					
 
 					db.get('todos')
 					  .find({ id })
@@ -80,6 +81,18 @@ const onRequest = (request, response) => {
 					response.end(JSON.stringify(db.get('todos').value()));
 
 				});
+		}
+
+		if (path.indexOf('/todo') === 0 && isLastBitNum && method.toUpperCase() === 'DELETE') {
+			console.log('me');
+
+			db.get('todos')
+			  .remove({ id })
+			  .write()
+
+
+			response.setHeader('Content-Type', 'application/json');
+			response.end(JSON.stringify(db.get('todos').value()));
 		}
 	}
 	else {
